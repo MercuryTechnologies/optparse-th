@@ -17,14 +17,12 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         ghc-version: 
-          - '9.8'
+          # - '9.8' # blocked on optparse-generic text upper bound
           - '9.6'
           - '9.4'
           - '9.2'
           - '9.0'
           - '8.10'
-          - '8.8'
-          - '8.6'
 
     steps:
       - uses: actions/checkout@v3

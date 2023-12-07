@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# OPTIONS_GHC -fno-warn-partial-fields -fno-warn-orphans #-}
 
@@ -41,11 +42,14 @@ data WrappedSubCommands w
       }
   deriving stock (Generic)
 
+#if MIN_VERSION_optparse_generic(1,5,1)
+#else
 deriving stock instance (Eq a) => Eq (a <#> msg)
 
 deriving stock instance (Eq a) => Eq (a <?> msg)
 
 deriving stock instance (Eq a) => Eq (a <!> msg)
+#endif
 
 deriving stock instance Show (WrappedSubCommands Wrapped)
 

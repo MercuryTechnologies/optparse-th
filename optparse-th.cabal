@@ -1,17 +1,19 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.35.2.
+-- This file has been generated from package.yaml by hpack version 0.35.4.
 --
 -- see: https://github.com/sol/hpack
 
 name:           optparse-th
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/optparse-th#readme>
-homepage:       https://github.com/githubuser/optparse-th#readme
-bug-reports:    https://github.com/githubuser/optparse-th/issues
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2023 Author name here
+synopsis:       Like `optparse-generic`, but with `TemplateHaskell` for faster builds
+description:    Please see the README on GitHub at <https://github.com/MercuryTechnologies/optparse-th#readme>
+category:       System
+homepage:       https://github.com/MercuryTechnologies/optparse-th#readme
+bug-reports:    https://github.com/MercuryTechnologies/optparse-th/issues
+author:         Matt von Hagen
+maintainer:     mattp@mercury.com
+copyright:      2023 Mercury Technologies
 license:        BSD-3-Clause
 license-file:   LICENSE
 build-type:     Simple
@@ -21,11 +23,10 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/optparse-th
+  location: https://github.com/MercuryTechnologies/optparse-th
 
 library
   exposed-modules:
-      Lib
       Options.TH
   other-modules:
       Paths_optparse_th
@@ -66,12 +67,11 @@ library
       TypeFamilies
       UndecidableInstances
       ViewPatterns
-      OverloadedRecordDot
       TypeOperators
       NoForeignFunctionInterface
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
-      base >=4.7 && <5
+      base >=4.14 && <5
     , optparse-applicative
     , optparse-generic
     , template-haskell
@@ -120,12 +120,11 @@ test-suite optparse-th-test
       TypeFamilies
       UndecidableInstances
       ViewPatterns
-      OverloadedRecordDot
       TypeOperators
       NoForeignFunctionInterface
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      base >=4.14 && <5
     , hspec
     , optparse-applicative
     , optparse-generic

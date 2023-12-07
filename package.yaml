@@ -20,7 +20,7 @@ category:            System
 description:         Please see the README on GitHub at <https://github.com/MercuryTechnologies/optparse-th#readme>
 
 dependencies:
-- base >= 4.7 && < 5
+- base >= 4.14 && < 5
 - optparse-generic
 - template-haskell
 - text
@@ -69,7 +69,6 @@ default-extensions:
 - TypeFamilies
 - UndecidableInstances
 - ViewPatterns
-- OverloadedRecordDot
 - TypeOperators
 - NoForeignFunctionInterface
 
