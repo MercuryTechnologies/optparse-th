@@ -1,0 +1,89 @@
+name:                optparse-th
+version:             0.1.0.0
+github:              "MercuryTechnologies/optparse-th"
+license:             BSD-3-Clause
+author:              Matt von Hagen
+maintainer:          mattp@mercury.com
+copyright:           2023 Mercury Technologies
+
+extra-source-files:
+- README.md
+- CHANGELOG.md
+
+# Metadata used when publishing your package
+synopsis:            Like `optparse-generic`, but with `TemplateHaskell` for faster builds
+category:            System
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/MercuryTechnologies/optparse-th#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- optparse-generic
+- template-haskell
+- text
+- optparse-applicative
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-home-modules
+- -Wpartial-fields
+- -Wredundant-constraints
+
+default-extensions:
+- BlockArguments
+- DataKinds
+- DefaultSignatures
+- DeriveFunctor
+- DeriveGeneric
+- DeriveLift
+- DerivingStrategies
+- DerivingVia
+- FlexibleContexts
+- FlexibleInstances
+- GADTs
+- GeneralizedNewtypeDeriving
+- ImportQualifiedPost
+- InstanceSigs
+- LambdaCase
+- MultiParamTypeClasses
+- MultiWayIf
+- NamedFieldPuns
+- NegativeLiterals
+- NumericUnderscores
+- OverloadedLabels
+- OverloadedStrings
+- PartialTypeSignatures
+- PatternSynonyms
+- RankNTypes
+- RecordWildCards
+- ScopedTypeVariables
+- StandaloneDeriving
+- TypeApplications
+- TypeFamilies
+- UndecidableInstances
+- ViewPatterns
+- OverloadedRecordDot
+- TypeOperators
+- NoForeignFunctionInterface
+
+library:
+  source-dirs: src
+
+tests:
+  optparse-th-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - optparse-th
+    - hspec
