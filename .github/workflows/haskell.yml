@@ -23,8 +23,6 @@ jobs:
           - '9.2'
           - '9.0'
           - '8.10'
-          - '8.8'
-          - '8.6'
 
     steps:
       - uses: actions/checkout@v3

@@ -69,7 +69,6 @@ default-extensions:
 - TypeFamilies
 - UndecidableInstances
 - ViewPatterns
-- OverloadedRecordDot
 - TypeOperators
 - NoForeignFunctionInterface
 

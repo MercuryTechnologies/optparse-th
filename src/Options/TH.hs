@@ -1,4 +1,5 @@
 {-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE CPP #-}
 
 -- | This module is designed to provide a @TemplateHaskell@ alternative to
 -- "Options.Generic".
@@ -8,6 +9,7 @@ module Options.TH
   )
 where
 
+import Data.Foldable (asum)
 import Control.Applicative
 import Data.List (foldl')
 import Data.List.NonEmpty (NonEmpty (..))
@@ -52,7 +54,8 @@ deriveParseRecord modifiers tyName = do
   datatype <-
     getDatatypeForInfo tyName tyInfo
 
-  datatypeToInstanceDec modifiers datatype <> datatypeToUnwrapRecordDec tyName datatype
+
+  liftA2 (<>) (datatypeToInstanceDec modifiers datatype) (datatypeToUnwrapRecordDec tyName datatype)
 
 datatypeToUnwrapRecordDec :: Name -> Datatype -> Q [Dec]
 datatypeToUnwrapRecordDec typeName datatype = do
@@ -84,7 +87,7 @@ mkUnwrapRecordExpr datatype = do
                   pure (n, typ)
 
               pure
-                ( ConP name [] (map (\(varName, _fieldType) -> VarP varName) namesAndTypes)
+                ( mkConP name (map (\(varName, _fieldType) -> VarP varName) namesAndTypes)
                 , namesAndTypes
                 )
             body <- do
@@ -103,7 +106,7 @@ mkUnwrapRecordExpr datatype = do
                   pure (n, typ)
 
               pure
-                ( ConP name [] (map (\(varName, _fieldType) -> VarP varName) varNames)
+                ( mkConP name (map (\(varName, _fieldType) -> VarP varName) varNames)
                 , varNames
                 )
             body <- do
@@ -323,3 +326,10 @@ makeSubcommand modifiers@Modifiers {..} con = do
 
   [e|Options.subparser $(pure subparserFieldsExpr)|]
 
+#if MIN_VERSION_template_haskell(2,18,0)
+mkConP :: Name -> [Pat] -> Pat
+mkConP name pats = ConP name [] pats
+#else
+mkConP :: Name -> [Pat] -> Pat
+mkConP name pats = ConP name pats
+#endif
